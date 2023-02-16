@@ -33,6 +33,7 @@ jobs:
       # - name: Show dependencies
       #   run: python -m pip list
       - name: Test the Project
-        run: make -s test-parallel
+        # run: make -s test-parallel
+        run: make -s test
       # - name: Publish code coverage
       #   uses: codecov/codecov-action@v3
