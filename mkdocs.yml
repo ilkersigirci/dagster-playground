@@ -1,8 +1,8 @@
-site_name: Python Template
+site_name: Dagster Playground
 site_dir: public
-site_url: https://github.com/ilkersigirci/python-template
-# repo_url: https://gitlab.com/ilkersigirci/python-template # # For GitLab
-repo_url: https://ilkersigirci.github.io/python-template/ # For GitHub
+site_url: https://github.com/ilkersigirci/dagster-playground
+# repo_url: https://gitlab.com/ilkersigirci/dagster-playground # # For GitLab
+repo_url: https://ilkersigirci.github.io/dagster-playground/ # For GitHub
 # repo_name: GitLab
 repo_name: GitHub
 

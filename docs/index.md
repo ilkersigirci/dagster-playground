@@ -1,5 +1,5 @@
 This site contains the project documentation for the
-`python_template` project.
+`dagster_playground` project.
 
 ## Table Of Contents
 

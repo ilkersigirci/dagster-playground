@@ -12,7 +12,7 @@ jobs:
   test:
     strategy:
       matrix:
-        python-version: ['3.8', '3.9', '3.10', '3.11']
+        python-version: ['3.8', '3.9', '3.10']
         # os: [ubuntu-20.04, ubuntu-22.04]
     runs-on: ubuntu-22.04
     steps:
@@ -34,5 +34,6 @@ jobs:
       #   run: python -m pip list
       - name: Test the Project
         run: make -s test-parallel
+        # run: make -s test
       # - name: Publish code coverage
       #   uses: codecov/codecov-action@v3
