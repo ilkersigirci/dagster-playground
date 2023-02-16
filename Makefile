@@ -2,15 +2,15 @@
 # chain commands together with semicolon
 .ONESHELL:
 SHELL=/bin/bash
-ROOT_DIR=python-template
-PACKAGE=python_template
+ROOT_DIR=dagster-playground
+PACKAGE=dagster_playground
 PYTHON = python
 PYTHON_VERSION=3.8
 DOC_DIR=./docs
 TEST_DIR=./tests
 TEST_MARKER=placeholder
 TEST_OUTPUT_DIR=tests_outputs
-PRECOMMIT_FILE_PATHS=./python_template/__init__.py
+PRECOMMIT_FILE_PATHS=./dagster_playground/__init__.py
 PYPI_URLS=
 
 .PHONY: help install test clean build publish doc pre-commit format lint

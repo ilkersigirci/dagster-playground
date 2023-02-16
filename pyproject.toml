@@ -1,18 +1,22 @@
 [tool.poetry]
-name = "python_template"
+name = "dagster_playground"
 version = "0.0.0"
-description = "Python Template"
+description = "Dagster Playground"
 readme = "README.md"
 
 authors = [
-    "template <template@github.com>",
+    "ilker.sigirci <sigirci.ilker@gmail.com>",
 ]
 maintainers = [
-    "template <template@github.com>",
+    "ilker.sigirci <sigirci.ilker@gmail.com>",
 ]
 
 keywords = [
-    "template"
+    "dagster",
+    "orchestration",
+    "data",
+    "pipeline",
+    "workflow",
 ]
 
 classifiers = [
@@ -33,7 +37,7 @@ classifiers = [
 ]
 
 [tool.poetry.urls]
-repository = "https://github.com/ilkersigirci/python-template"
+repository = "https://github.com/ilkersigirci/dagster-playground"
 
 [tool.poetry.build]
 generate-setup-file = false
@@ -50,6 +54,14 @@ generate-setup-file = false
 
 [tool.poetry.dependencies]
 python = ">=3.8,<3.12"
+numpy = "1.22.4"
+pandas = "1.3.5"
+dagster = "^1.1.18"
+# dbt-core = "*"
+# dbt-duckdb = "*"
+# dagster-dbt = "*"
+# dagster-duckdb-pandas = "*"
+
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.1.2"
@@ -70,6 +82,7 @@ pre-commit = "^2.19.0"
 ruff = "0.0.246"
 black = {version = "23.1.0", extras = ["d", "jupyter"]}
 mypy = "^1.0.0"
+dagit = "*"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
@@ -81,7 +94,7 @@ addopts = [
 #    "--strict-markers",
 #    "--doctest-modules",
     # NOTE: cov is not working with pycharm debugger. Enable it later!
-#    "--cov python_template",
+#    "--cov dagster_playground",
 #    "--cov-report=xml",
 #    "--cov-report html",
 ]
@@ -152,7 +165,7 @@ extend-exclude = [
 [tool.ruff.per-file-ignores]
 "__init__.py" = ["E402", "F401"]
 # "path/to/file.py" = ["E402"]
-# 'python_template/__init__.py' = ['F405', 'F403']
+# 'dagster_playground/__init__.py' = ['F405', 'F403']
 
 # [tool.ruff.flake8-quotes]
 # inline-quotes = "single"
@@ -178,7 +191,7 @@ combine-as-imports = true
 # Read more here: https://mypy.readthedocs.io/en/stable/config_file.html#using-a-pyproject-toml-file
 [tool.mypy]
 # python_version = "3.8"
-files = ["python_template"]
+files = ["dagster_playground"]
 # exclude = ['^tests/']
 strict = true
 show_error_codes = true
@@ -186,12 +199,12 @@ show_error_codes = true
 
 # TODO: Check whether this is working
 [[tool.mypy.overrides]]
-module = "python_template.tests.*"
+module = "dagster_playground.tests.*"
 ignore_missing_imports = true
 check_untyped_defs = true
 
 [tool.coverage.run]
-source = ['python_template']
+source = ['dagster_playground']
 branch = true
 context = '${CONTEXT}'
 
@@ -207,7 +220,7 @@ exclude_lines = [
 
 # [tool.coverage.paths]
 # source = [
-#     'python_template/',
+#     'dagster_playground/',
 # ]
 
 ######### Local poetry.toml example ##############

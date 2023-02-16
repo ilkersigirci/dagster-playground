@@ -11,8 +11,8 @@
 -   Default installation
 
 ```bash
-conda create -n python-template python=3.8 -y
-conda activate python-template
+conda create -n dagster-playground python=3.8 -y
+conda activate dagster-playground
 make install
 ```
 
