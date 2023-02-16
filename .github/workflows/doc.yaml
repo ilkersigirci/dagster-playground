@@ -3,7 +3,7 @@ name: Docs via GitHub Pages
 on:
   push:
     branches:
-      - main
+      - temporary-disabled
 
 permissions:
   contents: write

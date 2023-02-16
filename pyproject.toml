@@ -132,7 +132,7 @@ select = [
     "C",  # flake8-comprehensions
     "B",  # flake8-bugbear
     "Q",  # flake8-quotes
-    "D",  # flake8-docstrings
+    # "D",  # flake8-docstrings
     "T",  # (disallow print statements) keep debugging statements out of the codebase
     "RUF", # Enable all ruff-specific checks
     # (pylint) use all pylint rules (ruff currently implements only a subset of
@@ -222,6 +222,10 @@ exclude_lines = [
 # source = [
 #     'dagster_playground/',
 # ]
+
+[tool.dagster]
+module_name = "dagster_playground"
+
 
 ######### Local poetry.toml example ##############
 # [virtualenvs]
