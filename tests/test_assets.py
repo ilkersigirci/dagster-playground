@@ -1,6 +1,6 @@
 from dagster import materialize
 
-from dagster_playground.assets import (
+from dagster_playground.assets.tutorial.cereal import (
     cereal_protein_fractions,
     cereals,
     highest_protein_nabisco_cereal,

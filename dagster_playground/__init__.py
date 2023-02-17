@@ -1,11 +1,14 @@
 """Dagster playground package."""
 import pkg_resources  # type: ignore
-from dagster import Definitions, load_assets_from_modules
+from dagster import Definitions
 
-from . import assets
+from .assets import temporary_assets, tutorial_assets
 
 # Fetches the version of the package as defined in pyproject.toml
 __version__ = pkg_resources.get_distribution("dagster_playground").version
 
 
-defs = Definitions(assets=load_assets_from_modules([assets]))
+all_assets = temporary_assets + tutorial_assets
+# all_assets = [*temporary_assets, *tutorial_assets]
+
+defs = Definitions(assets=all_assets)
