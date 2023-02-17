@@ -1,4 +1,6 @@
 import csv
+import urllib.request
+import zipfile
 
 import requests
 from dagster import asset
@@ -39,3 +41,32 @@ def highest_protein_nabisco_cereal(nabisco_cereals, cereal_protein_fractions):
         nabisco_cereals, key=lambda cereal: cereal_protein_fractions[cereal["name"]]
     )
     return sorted_by_protein[-1]["name"]
+
+
+@asset
+def cereal_ratings_zip() -> None:
+    urllib.request.urlretrieve(
+        "https://dagster-git-tutorial-nothing-elementl.vercel.app/assets/cereal-ratings.csv.zip",
+        "cereal-ratings.csv.zip",
+    )
+
+
+@asset(non_argument_deps={"cereal_ratings_zip"})
+def cereal_ratings_csv() -> None:
+    with zipfile.ZipFile("cereal-ratings.csv.zip", "r") as zip_ref:
+        zip_ref.extractall(".")
+
+
+@asset(non_argument_deps={"cereal_ratings_csv"})
+def nabisco_cereal_ratings(nabisco_cereals):
+    with open("cereal-ratings.csv", "r") as f:
+        cereal_ratings = {
+            row["name"]: row["rating"] for row in csv.DictReader(f.readlines())
+        }
+
+    result = {}
+    for nabisco_cereal in nabisco_cereals:
+        name = nabisco_cereal["name"]
+        result[name] = cereal_ratings[name]
+
+    return result

@@ -8,7 +8,18 @@ from dagster_playground.assets.tutorial.cereal import (
 )
 
 
-def test_cereal_assets():
+def test_nabisco_cereals():
+    cereals = [
+        {"name": "cereal1", "mfr": "N"},
+        {"name": "cereal2", "mfr": "K"},
+    ]
+    result = nabisco_cereals(cereals)
+
+    assert len(result) == 1
+    assert result == [{"name": "cereal1", "mfr": "N"}]
+
+
+def test_all_cereal_assets():
     assets = [
         nabisco_cereals,
         cereals,
