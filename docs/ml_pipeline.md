@@ -1,0 +1,2 @@
+- Pipeline example from dagster blog [post](https://dagster.io/blog/dagster-ml-pipelines)
+- ![Pipeline](resources/dagster_ml_pipelines_blog.png)
