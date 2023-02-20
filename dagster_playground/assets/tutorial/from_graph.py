@@ -21,14 +21,19 @@ def upstream_asset() -> int:
     return 1
 
 
-@multi_asset(outs={"int_output": AssetOut(), "str_output": AssetOut()})
+@multi_asset(
+    outs={"int_output_multi_asset": AssetOut(), "str_output_multi_asset": AssetOut()}
+)
 def two_output_asset(upstream_asset: int) -> Tuple[int, str]:
     return (upstream_asset + 5, "foo")
 
 
 @graph
 def middle_asset_graph(upstream_asset):
-    return add_three(upstream_asset)
+    result = add_three(upstream_asset)
+    result = add_three(result)
+
+    return result
 
 
 # NOTE: Variable name should be same with the name of the graph ?
@@ -40,11 +45,12 @@ def downstream_asset(middle_asset_graph):
     return middle_asset_graph + 1
 
 
-@graph(out={"first_asset": GraphOut(), "second_asset": GraphOut()})
+@graph(out={"first_asset_graph": GraphOut(), "second_asset_graph": GraphOut()})
 def two_assets_graph(upstream_asset):
     one, two = two_output_asset(upstream_asset)
+    one, two = two_output_asset(one)
 
-    return {"first_asset": one, "second_asset": two}
+    return {"first_asset_graph": one, "second_asset_graph": two}
 
 
 two_assets = AssetsDefinition.from_graph(two_assets_graph)

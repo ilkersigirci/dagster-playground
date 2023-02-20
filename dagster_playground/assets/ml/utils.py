@@ -1,11 +1,15 @@
 import logging
 import zipfile
+from io import BytesIO
 from pathlib import Path
 from typing import Optional, Union
+from zipfile import ZipFile
 
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 import requests
+from sklearn.neighbors import NearestNeighbors
 from tqdm import tqdm
 
 logging.basicConfig(level=logging.INFO)
@@ -227,3 +231,26 @@ def loss_per_timestamp(losses, root_dir):
     plt.ylabel("SMAPE")
     plt.grid()
     plt.savefig(root_dir + "smape_per_timestamp.pdf")
+
+
+def extract_file_from_zip(zip_file_bytes, filename):
+    with ZipFile(BytesIO(zip_file_bytes)) as archive:
+        full_path = [
+            candidate_path
+            for candidate_path in archive.namelist()
+            if candidate_path.endswith(filename)
+        ][0]
+        return pd.read_csv(archive.open(full_path))
+
+
+class RecommenderModel:
+    def __init__(self, features, ids):
+        self.features = features
+        self.nn = NearestNeighbors(metric="cosine", n_jobs=-1)
+        self.nn.fit(self.features)
+        self.ids = ids
+
+    def find_similar(self, id, n=5):
+        index = self.ids.index(id)
+        (top_indexes,) = self.nn.kneighbors(self.features[[index]], n, False)
+        return [self.ids[index] for index in top_indexes]
