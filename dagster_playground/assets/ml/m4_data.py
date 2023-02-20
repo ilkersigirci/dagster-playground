@@ -14,7 +14,7 @@ def original_m4_data(context: OpExecutionContext) -> pd.DataFrame:
     # url = f"Test/{m4id}-test.csv"
 
     url = f"https://github.com/M4Competition/M4-methods/blob/master/Dataset/{uri}.csv?raw=true"
-    data = pd.read_csv(url)
+    data = pd.read_csv(url, nrows=10)
 
     return data
 
@@ -22,7 +22,7 @@ def original_m4_data(context: OpExecutionContext) -> pd.DataFrame:
 @asset
 def melt_m4_data(
     context: OpExecutionContext, original_m4_data: pd.DataFrame
-) -> pd.Series:
+) -> pd.Series:  # List[DynamicOutput[pd.Series]]:
     """
     Converts an M4 time series dataset from wide to long format.
     Returns a pandas DataFrame containing the dataset.
@@ -40,6 +40,12 @@ def melt_m4_data(
     # context.add_output_metadata({"data_head": MetadataValue.json(df.head().to_dict())})
 
     return df
+
+    # outputs = []
+    # for idx in len(df):
+    #     outputs.append(DynamicOutput(df.iloc[idx, :], mapping_key=idx))
+
+    # return outputs
 
 
 @asset(config_schema={"unique_id": str})
