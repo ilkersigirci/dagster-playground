@@ -1,7 +1,10 @@
 import numpy as np
 import pandas as pd
-from dagster import OpExecutionContext, asset
+from dagster import OpExecutionContext, asset, materialize
 from sktime.forecasting.ets import AutoETS
+from tqdm import tqdm
+
+from dagster_playground.assets.ml.m4 import M4Info
 
 
 @asset(config_schema={"m4id": str})
@@ -10,11 +13,26 @@ def original_m4_data(context: OpExecutionContext) -> pd.DataFrame:
     Downloads an M4 time series dataset given its ID.
     Returns a pandas DataFrame containing the dataset.
     """
-    uri = f'Train/{context.op_config["m4id"]}-train'
+    m4id = context.op_config["m4id"]
+    uri = f"Train/{m4id}-train"
     # url = f"Test/{m4id}-test.csv"
 
     url = f"https://github.com/M4Competition/M4-methods/blob/master/Dataset/{uri}.csv?raw=true"
-    data = pd.read_csv(url, nrows=10)
+    # data = pd.read_csv(url, nrows=10)
+
+    total_rows = M4Info[m4id].n_ts
+    chunksize = 1000
+    total = total_rows // chunksize + 1
+
+    data = pd.concat(
+        list(
+            tqdm(
+                pd.read_csv(url, chunksize=chunksize),
+                desc="Loading data",
+                total=total,
+            )
+        )
+    )
 
     return data
 
@@ -75,3 +93,14 @@ def train(one_m4_data: pd.Series) -> pd.Series:
     y_pred = model.predict(fh=fh)
 
     return y_pred
+
+
+if __name__ == "__main__":
+    asset_result = materialize(
+        [original_m4_data],
+        run_config={"ops": {"original_m4_data": {"config": {"m4id": "Daily"}}}},
+    )
+
+    result = asset_result.output_for_node("original_m4_data")
+
+    print(result.head())  # noqa: T201

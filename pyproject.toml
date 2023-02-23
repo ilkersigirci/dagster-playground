@@ -66,6 +66,7 @@ matplotlib = "^3.7.0"
 pyarrow = "^11.0.0"
 sktime = "^0.16.1"
 statsmodels = "^0.13.5"
+pydantic = "^1.10.5"
 
 
 [tool.poetry.group.test.dependencies]
