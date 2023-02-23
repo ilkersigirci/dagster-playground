@@ -5,7 +5,7 @@ from dagster import Output, asset
 
 @asset(output_required=False)
 def may_not_materialize():
-    # to simulate an asset that may not always materialize.
+    # To simulate an asset that may not always materialize.
     CONDITION_NUMBER = 5
 
     random.seed()
@@ -15,5 +15,5 @@ def may_not_materialize():
 
 @asset
 def downstream(may_not_materialize):
-    # will not run when may_not_materialize doesn't materialize the asset
+    # NOTE: Will not run when may_not_materialize doesn't materialize the asset
     return [*may_not_materialize, 5]
