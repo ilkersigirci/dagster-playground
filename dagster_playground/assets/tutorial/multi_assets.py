@@ -13,7 +13,7 @@ def simple_multi_asset() -> Tuple[int, str]:
     return 123, "abc"
 
 
-# TODO: Remove later since it is redunda.
+# TODO: Remove later since it is redundant.
 @multi_asset(
     outs={
         "simple_int_multi_asset_upstream": AssetOut(),

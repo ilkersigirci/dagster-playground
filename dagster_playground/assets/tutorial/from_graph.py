@@ -65,7 +65,7 @@ def two_assets_graph_upstream(upstream_asset: int):
 two_assets_graph_asset = AssetsDefinition.from_graph(two_assets_graph)
 two_assets_graph_upstream = AssetsDefinition.from_graph(two_assets_graph_upstream)
 
-#############################################################################
+########################  Defining explicit dependencies ###############################
 
 
 @graph(out={"one": GraphOut(), "two": GraphOut()})
@@ -84,7 +84,7 @@ explicit_deps_graph_asset = AssetsDefinition.from_graph(
     },
 )
 
-#############################################################################
+############################### Subsetting #############################################
 
 
 @op(out={"foo_1": Out(is_required=False), "foo_2": Out(is_required=False)})
