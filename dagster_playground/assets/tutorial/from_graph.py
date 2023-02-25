@@ -1,5 +1,6 @@
 from dagster import (
     AssetKey,
+    AssetOut,
     AssetsDefinition,
     GraphOut,
     OpExecutionContext,
@@ -7,6 +8,8 @@ from dagster import (
     Output,
     asset,
     graph,
+    graph_asset,
+    graph_multi_asset,
     op,
 )
 
@@ -26,7 +29,7 @@ def upstream_asset() -> int:
     return 1
 
 
-@graph
+@graph_asset
 def middle_asset_graph(upstream_asset):
     result = add_three(upstream_asset)
     result = add_three(result)
@@ -34,26 +37,24 @@ def middle_asset_graph(upstream_asset):
     return result
 
 
-# NOTE: Variable name should be same with the name of the graph ?
-middle_asset_graph = AssetsDefinition.from_graph(middle_asset_graph)
-
-
 @asset
 def downstream_asset(middle_asset_graph):
     return middle_asset_graph + 1
 
 
-@graph(out={"first_asset_graph": GraphOut(), "second_asset_graph": GraphOut()})
+@graph_multi_asset(
+    outs={"first_asset_graph": AssetOut(), "second_asset_graph": AssetOut()}
+)
 def two_assets_graph():
     one, two = simple_multi_asset()
 
     return {"first_asset_graph": one, "second_asset_graph": two}
 
 
-@graph(
-    out={
-        "first_asset_graph_upstream": GraphOut(),
-        "second_asset_graph_upstream": GraphOut(),
+@graph_multi_asset(
+    outs={
+        "first_asset_graph_upstream": AssetOut(),
+        "second_asset_graph_upstream": AssetOut(),
     }
 )
 def two_assets_graph_upstream(upstream_asset: int):
@@ -61,28 +62,6 @@ def two_assets_graph_upstream(upstream_asset: int):
 
     return {"first_asset_graph_upstream": one, "second_asset_graph_upstream": two}
 
-
-two_assets_graph_asset = AssetsDefinition.from_graph(two_assets_graph)
-two_assets_graph_upstream = AssetsDefinition.from_graph(two_assets_graph_upstream)
-
-########################  Defining explicit dependencies ###############################
-
-
-@graph(out={"one": GraphOut(), "two": GraphOut()})
-def return_one_and_two(zero):
-    one, two = simple_multi_asset_with_upstream(zero)
-
-    return {"one": one, "two": two}
-
-
-explicit_deps_graph_asset = AssetsDefinition.from_graph(
-    return_one_and_two,
-    keys_by_input_name={"zero": AssetKey("upstream_asset")},
-    keys_by_output_name={
-        "one": AssetKey("asset_one"),
-        "two": AssetKey("asset_two"),
-    },
-)
 
 ############################### Subsetting #############################################
 
@@ -106,11 +85,32 @@ def baz(foo_2, bar_2):
     return foo_2 + bar_2
 
 
-@graph(out={"foo_asset": GraphOut(), "baz_asset": GraphOut()})
+@graph_multi_asset(
+    outs={"foo_asset": AssetOut(), "baz_asset": AssetOut()}, can_subset=True
+)
 def subset_graph():
     bar_1, bar_2 = bar()
     foo_1, foo_2 = subset_op(bar_1)
     return {"foo_asset": foo_1, "baz_asset": baz(foo_2, bar_2)}
 
 
-subset_graph = AssetsDefinition.from_graph(subset_graph, can_subset=True)
+########################  Defining explicit dependencies ###############################
+
+# NOTE: In 1.1.20 onwards, this usage doesn't show up in the docs, but it's still supported.
+
+
+@graph(out={"one": GraphOut(), "two": GraphOut()})
+def return_one_and_two(zero):
+    one, two = simple_multi_asset_with_upstream(zero)
+
+    return {"one": one, "two": two}
+
+
+explicit_deps_graph_asset = AssetsDefinition.from_graph(
+    return_one_and_two,
+    keys_by_input_name={"zero": AssetKey("upstream_asset")},
+    keys_by_output_name={
+        "one": AssetKey("asset_one"),
+        "two": AssetKey("asset_two"),
+    },
+)
