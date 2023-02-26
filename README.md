@@ -12,6 +12,25 @@ conda create -n dagster-playground python=3.8 -y
 conda activate dagster-playground
 make install
 ```
+## Docker
+
+```bash
+# Development build (2.56 GB)
+docker build --tag dagster-playground --file docker/Dockerfile --target development .
+
+# Production build (918 MB)
+docker build --tag dagster-playground --file docker/Dockerfile --target production .
+```
+
+- To run command inside the container:
+
+```bash
+docker run --rm -it dagster-playground:latest bash
+
+# Temporary container
+docker run -it dagster-playground:latest bash
+```
+
 
 # Schedules and sensors
 
