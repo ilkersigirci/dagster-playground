@@ -73,7 +73,7 @@ pydantic = "^1.10.5"
 pytest = "^7.1.2"
 pytest-cov = "^3.0.0"
 pytest-rerunfailures = "^10.2"
-pytest-xdist = {version = ">=3.0", extras = ["psutil"]}
+pytest-xdist = {version = "^3.0.0", extras = ["psutil"]}
 #pytest-timeout = ""
 
 [tool.poetry.group.doc.dependencies]
