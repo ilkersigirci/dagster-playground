@@ -25,10 +25,10 @@ help:
 update-pip:
 	${PYTHON} -m pip install -U pip
 
-install-poetry: ## Install poetry if it is not already installed
+install-poetry: ## Install poetry if it is not already installed (Installing poetry with official method is recommended)
 	$(MAKE) update-pip
-	! pip show poetry &> /dev/null && pip install poetry==1.3.2
-	poetry config virtualenvs.create false
+	! command -v poetry &> /dev/null && pip install poetry==1.3.2
+	# poetry config virtualenvs.create false
 	# poetry config repositories.private-pypi <PRIVATE_PYPI_URL>
 	# poetry config http-basic.private-pypi ${PYPI_USERNAME} ${PYPI_PASSWORD}
 
