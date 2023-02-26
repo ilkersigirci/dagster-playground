@@ -1,8 +1,10 @@
-from dagster import DependencyDefinition, GraphDefinition, graph, op
+from dagster import DependencyDefinition, GraphDefinition, get_dagster_logger, graph, op
 
 
 @op
-def return_two(context) -> int:
+def return_two() -> int:
+    get_dagster_logger().info("Test manually created dagster logger")
+
     return 2
 
 
@@ -30,3 +32,7 @@ two_plus_two_from_constructor = GraphDefinition(
     node_defs=[return_two, add_two],
     dependencies={"add_two": {"number": DependencyDefinition("return_two")}},
 )
+
+
+if __name__ == "__main__":
+    result = inputs_and_outputs.execute_in_process()

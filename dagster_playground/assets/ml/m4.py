@@ -495,7 +495,7 @@ def evaluate_M4(dataset, forecasts, root_dir):
 
     group = dataset.split("-")[1]
     losses_dict = LOSSES_DICT[dataset]
-    logger.info("DATASET: M4 dataset, GROUP: ", group)
+    logger.info(f"DATASET: M4 dataset, GROUP: {group}")
     evaluation, mases_y_hat, smape_ts = M4Evaluation.evaluate(
         y_hat=forecasts, directory="./data", group=group
     )

@@ -103,4 +103,4 @@ if __name__ == "__main__":
 
     result = asset_result.output_for_node("original_m4_data")
 
-    print(result.head())  # noqa: T201
+    print(result.head())
