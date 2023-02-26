@@ -9,8 +9,9 @@ from .jobs.bmi.sensors import bmi_local_s3_sensor
 from .jobs.etl.config import etl_docker, etl_local
 from .jobs.tutorial import (
     branching_job,
-    do_it_all_with_simplified_config_job,
+    config_mapping_job,
     fan_in_job,
+    hardcoded_config_job,
     inputs_and_outputs_job,
     two_plus_two_from_constructor_job,
 )
@@ -23,7 +24,8 @@ JOBS = [
     etl_docker,
     bmi_local,
     branching_job,
-    do_it_all_with_simplified_config_job,
+    hardcoded_config_job,
+    config_mapping_job,
     fan_in_job,
     inputs_and_outputs_job,
     two_plus_two_from_constructor_job,

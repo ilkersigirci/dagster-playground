@@ -55,24 +55,25 @@ generate-setup-file = false
 python = ">=3.8,<3.11"
 numpy = "1.22.4"
 pandas = "1.3.5"
-dagster = "^1.1.18"
+dagster = "1.1.20"
 # dbt-core = "*"
 # dbt-duckdb = "*"
 # dagster-dbt = "*"
 # dagster-duckdb-pandas = "*"
-scikit-learn = "^1.2.1"
+sktime = "^0.16.1"
+statsmodels = "^0.13.5"
+scipy = "1.8.1" # FIXME: For Statsmodels. Otherwise it will install 1.10.1 version and get `Dependency walk failed at scipy (>=1.3,<1.9)` error.
 lightgbm = "^3.3.5"
 matplotlib = "^3.7.0"
 pyarrow = "^11.0.0"
-sktime = "^0.16.1"
-statsmodels = "^0.13.5"
+pydantic = "^1.10.5"
 
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.1.2"
 pytest-cov = "^3.0.0"
 pytest-rerunfailures = "^10.2"
-pytest-xdist = {version = ">=3.0", extras = ["psutil"]}
+pytest-xdist = {version = "^3.0.0", extras = ["psutil"]}
 #pytest-timeout = ""
 
 [tool.poetry.group.doc.dependencies]
@@ -84,11 +85,12 @@ mkdocstrings = {version = "^0.20.0", extras = ["python"]}
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^2.19.0"
-ruff = "0.0.246"
+ruff = "0.0.252"
 black = {version = "23.1.0", extras = ["d", "jupyter"]}
 mypy = "^1.0.0"
 dagit = "*"
 jupyter = "^1.0.0"
+scalene = "^1.5.19"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
