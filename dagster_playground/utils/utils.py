@@ -82,11 +82,11 @@ def get_dagster_compatible_function_param_types(function: Callable) -> List[Type
                 Any values in the dictionary get resolved by the same rules, recursively.
         Meaning that Union and Any are not supported in dagster.
 
-    Raises:
-        ValueError: When any of the function param can't be expressed as non-primitive type.
-
     Returns:
         Function parameter primitive types.
+
+    Raises:
+        ValueError: When any of the function param can't be expressed as non-primitive type.
     """
     params = _get_function_params(function)
 

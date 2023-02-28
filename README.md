@@ -12,6 +12,49 @@ conda create -n dagster-playground python=3.8 -y
 conda activate dagster-playground
 make install
 ```
+## Docker
+
+# Single image
+
+```bash
+# Development build (2.56 GB)
+docker build --tag dagster-playground --file docker/Dockerfile --target development .
+
+# Production build (918 MB)
+docker build --tag dagster-playground --file docker/Dockerfile --target production .
+```
+
+- To run command inside the container:
+
+```bash
+docker run -it dagster-playground:latest bash
+
+# Temporary container
+docker run --rm -it dagster-playground:latest bash
+```
+
+# Multiple docker container setup
+- Separate `dagit`, `dagster-daemon` and `user-code` containers.
+- Simulates the production environment.
+
+- To start the containers:
+```
+docker-compose up -d
+```
+- Volume binds can be commented in `docker-compose.yml` if you want to use it only for production environment.
+
+## Development setup
+
+- `user-code` container binds the code for easier development experience. This allows the developer to edit the code and see the changes in the container without rebuilding it.
+- One important note about this setup is that one need to restart the `user-code` container to see the changes in `dagit` UI. This is a `dagster` limitation and not related to docker setup.
+```
+docker compose restart user-code
+```
+- After the container is restarted, `dagit` UI prompt on the buttom left corner to reload the page. Click on it to see the changes.
+
+
+
+
 
 # Schedules and sensors
 

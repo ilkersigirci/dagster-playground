@@ -1,0 +1,56 @@
+ARG APP_NAME=dagster_playground
+ARG APP_PATH=/opt/dagster/app
+ARG PYTHON_VERSION=3.10-slim-bullseye
+ARG POETRY_VERSION=1.4.0
+
+#
+# Stage: staging
+#
+FROM python:$PYTHON_VERSION as staging
+ARG APP_NAME
+ARG APP_PATH
+ARG POETRY_VERSION
+
+ENV \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONFAULTHANDLER=1
+ENV \
+    POETRY_VERSION=$POETRY_VERSION \
+    POETRY_HOME="/opt/poetry" \
+    POETRY_VIRTUALENVS_IN_PROJECT=true \
+    POETRY_NO_INTERACTION=1
+
+RUN apt-get update && \
+    apt-get install --no-install-recommends -y \
+    curl \
+    build-essential
+
+# Install Poetry - respects $POETRY_VERSION & $POETRY_HOME
+RUN curl -sSL https://install.python-poetry.org | python -
+ENV PATH="$POETRY_HOME/bin:$PATH"
+
+# Import our project files
+WORKDIR $APP_PATH
+COPY ./poetry.lock ./pyproject.toml ./
+COPY . .
+
+#
+# Stage: development
+#
+FROM staging as development
+ARG APP_NAME
+ARG APP_PATH
+
+ENV POETRY_INSTALLER_MAX_WORKERS=10
+
+# Install project in editable mode and with development dependencies
+WORKDIR $APP_PATH
+RUN poetry install
+
+# Run dagster gRPC server on port 4000
+EXPOSE 4000
+
+# CMD allows this to be overridden from run launchers or executors that want
+# to run other commands against your repository
+CMD ["dagster", "api", "grpc", "-h", "0.0.0.0", "-p", "4000", "-m", "dagster_playground"]

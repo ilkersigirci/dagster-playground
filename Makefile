@@ -13,8 +13,10 @@ TEST_OUTPUT_DIR=tests_outputs
 PRECOMMIT_FILE_PATHS=./dagster_playground/__init__.py
 PROFILE_FILE_PATH=./dagster_playground/__init__.py
 PYPI_URLS=
+DOCKER_IMAGE=dagster-playground
+DOCKER_TARGET=development
 
-.PHONY: help install test clean build publish doc pre-commit format lint profile
+.PHONY: help install test clean build publish doc pre-commit format lint profile docker
 .DEFAULT_GOAL=help
 
 help:
@@ -27,7 +29,7 @@ update-pip:
 
 install-poetry: ## Install poetry if it is not already installed (Installing poetry with official method is recommended)
 	$(MAKE) update-pip
-	! command -v poetry &> /dev/null && pip install poetry==1.3.2
+	! command -v poetry &> /dev/null && pip install poetry==1.4.0
 	# poetry config virtualenvs.create false
 	# poetry config repositories.private-pypi <PRIVATE_PYPI_URL>
 	# poetry config http-basic.private-pypi ${PYPI_USERNAME} ${PYPI_PASSWORD}
@@ -75,7 +77,7 @@ install-precommit: ## Install pre-commit hooks
 	pre-commit install
 
 install-lint:
-	pip install black[d]==23.1.0 ruff==0.0.252
+	pip install black[d]==23.1.0 ruff==0.0.253
 
 install-build:
 	############# PIP ############
@@ -217,3 +219,9 @@ profile-gui: ## Profile the file with scalene and shows the report in the browse
 
 profile-builtin: ## Profile the file with cProfile and shows the report in the terminal
 	${PYTHON} -m cProfile -s tottime ${PROFILE_FILE_PATH}
+
+docker: ## Build docker image
+	docker build --tag ${DOCKER_IMAGE} --file docker/Dockerfile --target ${DOCKER_TARGET} .
+
+docker-dagit: ## Run dagit inside built docker image
+	docker run --rm -p 3000:3000 ${DOCKER_IMAGE}
