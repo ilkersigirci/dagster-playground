@@ -52,7 +52,6 @@ WORKDIR $APP_PATH
 RUN poetry install
 
 ENTRYPOINT ["poetry", "run"]
-# CMD ["nml"]
 
 #
 # Stage: build
