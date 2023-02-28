@@ -17,4 +17,4 @@ RUN pip install \
 
 WORKDIR $DAGSTER_HOME
 
-COPY dagster.yaml workspace.yaml .
+COPY dagster.yaml workspace.yaml ./

@@ -2,12 +2,12 @@
 import pkg_resources  # type: ignore
 from dagster import Definitions
 
-from .assets import ml_assets, temporary_assets, tutorial_assets
-from .jobs.bmi.config import bmi_local
-from .jobs.bmi.schedules import bmi_local_schedule
-from .jobs.bmi.sensors import bmi_local_s3_sensor
-from .jobs.etl.config import etl_docker, etl_local
-from .jobs.tutorial import (
+from dagster_playground.assets import ml_assets, temporary_assets, tutorial_assets
+from dagster_playground.jobs.bmi.config import bmi_local
+from dagster_playground.jobs.bmi.schedules import bmi_local_schedule
+from dagster_playground.jobs.bmi.sensors import bmi_local_s3_sensor
+from dagster_playground.jobs.etl.config import etl_docker, etl_local
+from dagster_playground.jobs.tutorial import (
     branching_job,
     config_mapping_job,
     fan_in_job,

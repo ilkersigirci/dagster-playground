@@ -59,9 +59,9 @@ services:
       # target: data-analytics
     container_name: user-code
     restart: always
-    # depends_on:
+    depends_on:
       # - localstack
-      # - postgresql  # TODO: Is needed?
+      - postgresql  # TODO: Is needed?
     networks:
       - dagster_network
     # profiles:
