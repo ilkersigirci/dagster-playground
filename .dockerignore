@@ -1,8 +1,9 @@
 
 # Git
 .git
-.github
 .gitignore
+.github
+.gitlab-ci.yml
 
 
 # Docker

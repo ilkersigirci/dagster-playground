@@ -52,6 +52,7 @@ WORKDIR $APP_PATH
 RUN poetry install
 
 ENTRYPOINT ["poetry", "run"]
+CMD ["bash"]
 
 #
 # Stage: build
@@ -96,6 +97,7 @@ WORKDIR /home/$APP_NAME
 USER $APP_NAME
 
 # export APP_NAME as environment variable for the CMD
-ENV APP_NAME=$APP_NAME
+# ENV APP_NAME=$APP_NAME
+# CMD ["sh", "-c", "$APP_NAME"]
 
-CMD ["sh", "-c", "$APP_NAME"]
+CMD ["bash"]

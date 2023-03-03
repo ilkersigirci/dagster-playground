@@ -14,7 +14,7 @@ make install
 ```
 ## Docker
 
-# Single image
+### Single image
 
 ```bash
 # Development build (2.56 GB)
@@ -33,7 +33,7 @@ docker run -it dagster-playground:latest bash
 docker run --rm -it dagster-playground:latest bash
 ```
 
-# Multiple docker container setup
+### Multiple docker container setup
 - Separate `dagit`, `dagster-daemon` and `user-code` containers.
 - Simulates the production environment.
 
@@ -43,7 +43,7 @@ docker-compose up -d
 ```
 - Volume binds can be commented in `docker-compose.yml` if you want to use it only for production environment.
 
-## Development setup
+##### Development setup
 
 - `user-code` container binds the code for easier development experience. This allows the developer to edit the code and see the changes in the container without rebuilding it.
 - One important note about this setup is that one need to restart the `user-code` container to see the changes in `dagit` UI. This is a `dagster` limitation and not related to docker setup.
