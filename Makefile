@@ -24,6 +24,10 @@ help:
 		 awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-15s\033[0m\
 		 %s\n", $$1, $$2}'
 
+python-info: ## List information about the python environment
+	@which ${PYTHON}
+	@${PYTHON} --version
+
 update-pip:
 	${PYTHON} -m pip install -U pip
 
@@ -31,6 +35,7 @@ install-poetry: ## Install poetry if it is not already installed (Installing poe
 	$(MAKE) update-pip
 	! command -v poetry &> /dev/null && pip install poetry==1.4.0
 	# poetry config virtualenvs.create false
+	# poetry config virtualenvs.prefer-active-python true
 	# poetry config repositories.private-pypi <PRIVATE_PYPI_URL>
 	# poetry config http-basic.private-pypi ${PYPI_USERNAME} ${PYPI_PASSWORD}
 

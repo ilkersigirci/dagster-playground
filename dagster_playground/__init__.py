@@ -13,6 +13,7 @@ from .jobs.tutorial import (
     fan_in_job,
     hardcoded_config_job,
     inputs_and_outputs_job,
+    mlflow_job,
     two_plus_two_from_constructor_job,
 )
 
@@ -29,6 +30,7 @@ JOBS = [
     fan_in_job,
     inputs_and_outputs_job,
     two_plus_two_from_constructor_job,
+    mlflow_job,
 ]
 # JOBS = None
 

@@ -664,7 +664,7 @@ colorama = {version = "*", markers = "platform_system == \"Windows\""}
 name = "cloudpickle"
 version = "2.2.1"
 description = "Extended pickling support for Python objects"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -891,20 +891,20 @@ files = [
 
 [[package]]
 name = "dagit"
-version = "1.1.20"
+version = "1.1.21"
 description = "Web UI for dagster."
 category = "dev"
 optional = false
 python-versions = "*"
 files = [
-    {file = "dagit-1.1.20-py3-none-any.whl", hash = "sha256:d387715d750faa97cf4a25e9b5c0d0111c22bfc43ee2beffcc4d91e1deafe886"},
-    {file = "dagit-1.1.20.tar.gz", hash = "sha256:0e6688eeb32ef66f886a72081f9fc4697e8b564a703d6bac8a0e281c188727be"},
+    {file = "dagit-1.1.21-py3-none-any.whl", hash = "sha256:cf8d98ca478dbcfe2981058603baf9033188ee6469eedea4d962ba2f81b92a70"},
+    {file = "dagit-1.1.21.tar.gz", hash = "sha256:90b7315ab9001bfd04e085c3128302b64aa8b64e341e546def4948011b546395"},
 ]
 
 [package.dependencies]
 click = ">=7.0,<9.0"
-dagster = "1.1.20"
-dagster-graphql = "1.1.20"
+dagster = "1.1.21"
+dagster-graphql = "1.1.21"
 starlette = "*"
 uvicorn = {version = "*", extras = ["standard"]}
 
@@ -914,14 +914,14 @@ test = ["starlette[full]"]
 
 [[package]]
 name = "dagster"
-version = "1.1.20"
+version = "1.1.21"
 description = "The data orchestration platform built for productivity."
 category = "main"
 optional = false
 python-versions = "*"
 files = [
-    {file = "dagster-1.1.20-py3-none-any.whl", hash = "sha256:28e357695ee49623744a440d97bf0671fbd782dd1845ad1125f88eb1d00056e0"},
-    {file = "dagster-1.1.20.tar.gz", hash = "sha256:a51ddd331362010c875342bad0d939c639e8026bf5d600baf701c38c03d6fd2c"},
+    {file = "dagster-1.1.21-py3-none-any.whl", hash = "sha256:75249daa0076c4cc0000f6a5c9570469cce815f4c0b8c5e9c1e48e0cabd37bb4"},
+    {file = "dagster-1.1.21.tar.gz", hash = "sha256:49ba8e30d44e9dcc933158048f6f6f1d18fdf9262e2ee3397b724566006593c2"},
 ]
 
 [package.dependencies]
@@ -950,7 +950,7 @@ tabulate = "*"
 tomli = "*"
 toposort = ">=1.0"
 tqdm = "*"
-typing-extensions = ">=4.0.1"
+typing-extensions = ">=4.4.0"
 universal-pathlib = "*"
 watchdog = ">=0.8.3"
 
@@ -964,38 +964,75 @@ test = ["buildkite-test-collector", "docker", "grpcio-tools (>=1.32.0,<1.44.0)",
 
 [[package]]
 name = "dagster-graphql"
-version = "1.1.20"
+version = "1.1.21"
 description = "The GraphQL frontend to python dagster."
 category = "dev"
 optional = false
 python-versions = "*"
 files = [
-    {file = "dagster-graphql-1.1.20.tar.gz", hash = "sha256:e8803a47a35cad022a6aa9a4bae604f1003e0651e8dac7592855e8865339f914"},
-    {file = "dagster_graphql-1.1.20-py3-none-any.whl", hash = "sha256:aaffe170fc3bcdfba894bdb09d854c62f37f4c4a931c8e556a92e54cd1d320e3"},
+    {file = "dagster-graphql-1.1.21.tar.gz", hash = "sha256:d9204b565b26eedc1f4678614ea72712cf5465e094660b6d181e9cc7d705fc9d"},
+    {file = "dagster_graphql-1.1.21-py3-none-any.whl", hash = "sha256:84e47d31b7f8d054c46bf5bcc34a6fc8ee30f3da31e1ba74636fcb6ceca5101a"},
 ]
 
 [package.dependencies]
-dagster = "1.1.20"
+dagster = "1.1.21"
 gql = {version = ">=3.0.0", extras = ["requests"]}
 graphene = ">=3"
 requests = "*"
 starlette = "*"
 
 [[package]]
+name = "dagster-mlflow"
+version = "0.17.21"
+description = "Package for mlflow Dagster framework components."
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "dagster-mlflow-0.17.21.tar.gz", hash = "sha256:a9c3b1e6a5e16f0d08e8bb467280ac59223b15414b3079872a9373a2ee49a5c6"},
+    {file = "dagster_mlflow-0.17.21-py3-none-any.whl", hash = "sha256:6f56dbe90b85ee2a81e541dce6bcbbfcbf98f55098a619d3157d96d42809e0b5"},
+]
+
+[package.dependencies]
+dagster = "*"
+mlflow = "<=1.26.0"
+pandas = "*"
+
+[[package]]
 name = "dagster-postgres"
-version = "0.17.20"
+version = "0.17.21"
 description = "A Dagster integration for postgres"
 category = "dev"
 optional = false
 python-versions = "*"
 files = [
-    {file = "dagster-postgres-0.17.20.tar.gz", hash = "sha256:9e43dca3fe739568a98bfde498e5d5feec849d3ae6c29cd2474fb2c0f6e2bb3e"},
-    {file = "dagster_postgres-0.17.20-py3-none-any.whl", hash = "sha256:187eaa5d2a0b4cf0423ca767515bbbe75ca4f867ba06b27ce2a708c5e74a6bf5"},
+    {file = "dagster-postgres-0.17.21.tar.gz", hash = "sha256:95e152a05faf684d2bf3438f802a5da451d88c0f178309275b31a2385bb5d721"},
+    {file = "dagster_postgres-0.17.21-py3-none-any.whl", hash = "sha256:d95af322daa14860e31e59424aa25b9a42d599498b32274592210173fd2e400d"},
 ]
 
 [package.dependencies]
-dagster = "1.1.20"
+dagster = "1.1.21"
 psycopg2-binary = "*"
+
+[[package]]
+name = "databricks-cli"
+version = "0.17.4"
+description = "A command line interface for Databricks"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "databricks-cli-0.17.4.tar.gz", hash = "sha256:bc0c4dd082f033cb6d7978cacaca5261698efe3a4c70f52f98762c38db925ce0"},
+    {file = "databricks_cli-0.17.4-py2-none-any.whl", hash = "sha256:bbd57bc21c88ac6d1f8f0b250db986e500490c4d3cb69664229384632eaeed81"},
+]
+
+[package.dependencies]
+click = ">=7.0"
+oauthlib = ">=3.1.0"
+pyjwt = ">=1.7.0"
+requests = ">=2.17.3"
+six = ">=1.10.0"
+tabulate = ">=0.7.7"
 
 [[package]]
 name = "debugpy"
@@ -1079,6 +1116,28 @@ files = [
 ]
 
 [[package]]
+name = "docker"
+version = "6.0.1"
+description = "A Python library for the Docker Engine API."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "docker-6.0.1-py3-none-any.whl", hash = "sha256:dbcb3bd2fa80dca0788ed908218bf43972772009b881ed1e20dfc29a65e49782"},
+    {file = "docker-6.0.1.tar.gz", hash = "sha256:896c4282e5c7af5c45e8b683b0b0c33932974fe6e50fc6906a0a83616ab3da97"},
+]
+
+[package.dependencies]
+packaging = ">=14.0"
+pywin32 = {version = ">=304", markers = "sys_platform == \"win32\""}
+requests = ">=2.26.0"
+urllib3 = ">=1.26.0"
+websocket-client = ">=0.32.0"
+
+[package.extras]
+ssh = ["paramiko (>=2.4.3)"]
+
+[[package]]
 name = "docstring-parser"
 version = "0.15"
 description = "Parse Python docstrings in reST, Google and Numpydoc format"
@@ -1088,6 +1147,18 @@ python-versions = ">=3.6,<4.0"
 files = [
     {file = "docstring_parser-0.15-py3-none-any.whl", hash = "sha256:d1679b86250d269d06a99670924d6bce45adc00b08069dae8c47d98e89b667a9"},
     {file = "docstring_parser-0.15.tar.gz", hash = "sha256:48ddc093e8b1865899956fcc03b03e66bb7240c310fac5af81814580c55bf682"},
+]
+
+[[package]]
+name = "entrypoints"
+version = "0.4"
+description = "Discover and load entry points from installed packages."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "entrypoints-0.4-py3-none-any.whl", hash = "sha256:f174b5ff827504fd3cd97cc3f8649f3693f51538c7e4bdf3ef002c8429d42f9f"},
+    {file = "entrypoints-0.4.tar.gz", hash = "sha256:b706eddaa9218a19ebcd67b56818f05bb27589b1ca9e8d797b74affad4ccacd4"},
 ]
 
 [[package]]
@@ -1165,6 +1236,29 @@ files = [
 [package.extras]
 docs = ["furo (>=2022.12.7)", "sphinx (>=5.3)", "sphinx-autodoc-typehints (>=1.19.5)"]
 testing = ["covdefaults (>=2.2.2)", "coverage (>=7.0.1)", "pytest (>=7.2)", "pytest-cov (>=4)", "pytest-timeout (>=2.1)"]
+
+[[package]]
+name = "flask"
+version = "2.2.3"
+description = "A simple framework for building complex web applications."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "Flask-2.2.3-py3-none-any.whl", hash = "sha256:c0bec9477df1cb867e5a67c9e1ab758de9cb4a3e52dd70681f59fa40a62b3f2d"},
+    {file = "Flask-2.2.3.tar.gz", hash = "sha256:7eb373984bf1c770023fce9db164ed0c3353cd0b53f130f4693da0ca756a2e6d"},
+]
+
+[package.dependencies]
+click = ">=8.0"
+importlib-metadata = {version = ">=3.6.0", markers = "python_version < \"3.10\""}
+itsdangerous = ">=2.0"
+Jinja2 = ">=3.0"
+Werkzeug = ">=2.2.2"
+
+[package.extras]
+async = ["asgiref (>=3.2)"]
+dotenv = ["python-dotenv"]
 
 [[package]]
 name = "fonttools"
@@ -1340,6 +1434,36 @@ python-dateutil = ">=2.8.1"
 
 [package.extras]
 dev = ["flake8", "markdown", "twine", "wheel"]
+
+[[package]]
+name = "gitdb"
+version = "4.0.10"
+description = "Git Object Database"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "gitdb-4.0.10-py3-none-any.whl", hash = "sha256:c286cf298426064079ed96a9e4a9d39e7f3e9bf15ba60701e95f5492f28415c7"},
+    {file = "gitdb-4.0.10.tar.gz", hash = "sha256:6eb990b69df4e15bad899ea868dc46572c3f75339735663b81de79b06f17eb9a"},
+]
+
+[package.dependencies]
+smmap = ">=3.0.1,<6"
+
+[[package]]
+name = "gitpython"
+version = "3.1.31"
+description = "GitPython is a Python library used to interact with Git repositories"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "GitPython-3.1.31-py3-none-any.whl", hash = "sha256:f04893614f6aa713a60cbbe1e6a97403ef633103cdd0ef5eb6efe0deb98dbe8d"},
+    {file = "GitPython-3.1.31.tar.gz", hash = "sha256:8ce3bcf69adfdf7c7d503e78fd3b1c492af782d58893b650adb2ac8912ddd573"},
+]
+
+[package.dependencies]
+gitdb = ">=4.0.1,<5"
 
 [[package]]
 name = "gql"
@@ -1588,6 +1712,27 @@ files = [
 [package.dependencies]
 grpcio = ">=1.43.0"
 protobuf = ">=3.6.0"
+
+[[package]]
+name = "gunicorn"
+version = "20.1.0"
+description = "WSGI HTTP Server for UNIX"
+category = "main"
+optional = false
+python-versions = ">=3.5"
+files = [
+    {file = "gunicorn-20.1.0-py3-none-any.whl", hash = "sha256:9dcc4547dbb1cb284accfb15ab5667a0e5d1881cc443e0677b4882a4067a807e"},
+    {file = "gunicorn-20.1.0.tar.gz", hash = "sha256:e0a968b5ba15f8a328fdfd7ab1fcb5af4470c28aaf7e55df02a99bc13138e6e8"},
+]
+
+[package.dependencies]
+setuptools = ">=3.0"
+
+[package.extras]
+eventlet = ["eventlet (>=0.24.1)"]
+gevent = ["gevent (>=1.4.0)"]
+setproctitle = ["setproctitle"]
+tornado = ["tornado (>=0.2)"]
 
 [[package]]
 name = "h11"
@@ -1869,6 +2014,18 @@ files = [
 
 [package.dependencies]
 arrow = ">=0.15.0"
+
+[[package]]
+name = "itsdangerous"
+version = "2.1.2"
+description = "Safely pass data to untrusted environments and back."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "itsdangerous-2.1.2-py3-none-any.whl", hash = "sha256:2c2349112351b88699d8d4b6b075022c0808887cb7ad10069318a8b0bc88db44"},
+    {file = "itsdangerous-2.1.2.tar.gz", hash = "sha256:5dbbc68b317e5e42f327f9021763545dc3fc3bfe22e6deb96aaf1fc38874156a"},
+]
 
 [[package]]
 name = "jedi"
@@ -2658,6 +2815,48 @@ griffe = ">=0.24"
 mkdocstrings = ">=0.19"
 
 [[package]]
+name = "mlflow"
+version = "1.26.0"
+description = "MLflow: A Platform for ML Development and Productionization"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "mlflow-1.26.0-py3-none-any.whl", hash = "sha256:4b94c1b6d6c37635c03e8a91d0d5d74cc8effb98babd6116195ab7b2ea832324"},
+    {file = "mlflow-1.26.0.tar.gz", hash = "sha256:d83d60950928bc263494dd247f119ea0b8a04e490fa628f5de64dea2eec2030e"},
+]
+
+[package.dependencies]
+alembic = "*"
+click = ">=7.0"
+cloudpickle = "*"
+databricks-cli = ">=0.8.7"
+docker = ">=4.0.0"
+entrypoints = "*"
+Flask = "*"
+gitpython = ">=2.1.0"
+gunicorn = {version = "*", markers = "platform_system != \"Windows\""}
+importlib-metadata = ">=3.7.0,<4.7.0 || >4.7.0"
+numpy = "*"
+packaging = "*"
+pandas = "*"
+prometheus-flask-exporter = "*"
+protobuf = ">=3.7.0"
+pytz = "*"
+pyyaml = ">=5.1"
+querystring-parser = "*"
+requests = ">=2.17.3"
+scipy = "*"
+sqlalchemy = "*"
+sqlparse = ">=0.3.1"
+waitress = {version = "*", markers = "platform_system == \"Windows\""}
+
+[package.extras]
+aliyun-oss = ["aliyunstoreplugin"]
+extras = ["azureml-core (>=1.2.0)", "boto3", "google-cloud-storage (>=1.30.0)", "kubernetes", "mlserver (>=0.5.3)", "mlserver-mlflow (>=0.5.3)", "pyarrow", "pysftp", "scikit-learn", "virtualenv"]
+sqlserver = ["mlflow-dbstore"]
+
+[[package]]
 name = "multidict"
 version = "6.0.4"
 description = "multidict implementation"
@@ -3077,6 +3276,23 @@ files = [
 ]
 
 [[package]]
+name = "oauthlib"
+version = "3.2.2"
+description = "A generic, spec-compliant, thorough implementation of the OAuth request-signing logic"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "oauthlib-3.2.2-py3-none-any.whl", hash = "sha256:8139f29aac13e25d502680e9e19963e83f16838d48a0d71c287fe40e7067fbca"},
+    {file = "oauthlib-3.2.2.tar.gz", hash = "sha256:9859c40929662bec5d64f34d01c99e093149682a3f38915dc0655d5a633dd918"},
+]
+
+[package.extras]
+rsa = ["cryptography (>=3.0.0)"]
+signals = ["blinker (>=1.4.0)"]
+signedtoken = ["cryptography (>=3.0.0)", "pyjwt (>=2.0.0,<3)"]
+
+[[package]]
 name = "packaging"
 version = "23.0"
 description = "Core utilities for Python packages"
@@ -3415,7 +3631,7 @@ virtualenv = ">=20.10.0"
 name = "prometheus-client"
 version = "0.16.0"
 description = "Python client for the Prometheus monitoring system."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -3425,6 +3641,22 @@ files = [
 
 [package.extras]
 twisted = ["twisted"]
+
+[[package]]
+name = "prometheus-flask-exporter"
+version = "0.22.3"
+description = "Prometheus metrics exporter for Flask"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "prometheus_flask_exporter-0.22.3-py3-none-any.whl", hash = "sha256:16e6a3a7ce0089fc7c78a6956cdf28c184c3ac518e2b46a2a8e410b68d3a84a3"},
+    {file = "prometheus_flask_exporter-0.22.3.tar.gz", hash = "sha256:32b152aeb7970cbf04616627fc5bf20d82b0918e54c54f80dc8aaef3349fd333"},
+]
+
+[package.dependencies]
+flask = "*"
+prometheus-client = "*"
 
 [[package]]
 name = "prompt-toolkit"
@@ -3725,6 +3957,24 @@ files = [
 
 [package.extras]
 plugins = ["importlib-metadata"]
+
+[[package]]
+name = "pyjwt"
+version = "2.6.0"
+description = "JSON Web Token implementation in Python"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "PyJWT-2.6.0-py3-none-any.whl", hash = "sha256:d83c3d892a77bbb74d3e1a2cfa90afaadb60945205d1095d9221f04466f64c14"},
+    {file = "PyJWT-2.6.0.tar.gz", hash = "sha256:69285c7e31fc44f68a1feb309e948e0df53259d579295e6cfe2b1792329f05fd"},
+]
+
+[package.extras]
+crypto = ["cryptography (>=3.4.0)"]
+dev = ["coverage[toml] (==5.0.4)", "cryptography (>=3.4.0)", "pre-commit", "pytest (>=6.0.0,<7.0.0)", "sphinx (>=4.5.0,<5.0.0)", "sphinx-rtd-theme", "zope.interface"]
+docs = ["sphinx (>=4.5.0,<5.0.0)", "sphinx-rtd-theme", "zope.interface"]
+tests = ["coverage[toml] (==5.0.4)", "pytest (>=6.0.0,<7.0.0)"]
 
 [[package]]
 name = "pymdown-extensions"
@@ -4204,6 +4454,21 @@ packaging = "*"
 test = ["pytest (>=6,!=7.0.0,!=7.0.1)", "pytest-cov (>=3.0.0)", "pytest-qt"]
 
 [[package]]
+name = "querystring-parser"
+version = "1.2.4"
+description = "QueryString parser for Python/Django that correctly handles nested dictionaries"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "querystring_parser-1.2.4-py2.py3-none-any.whl", hash = "sha256:d2fa90765eaf0de96c8b087872991a10238e89ba015ae59fedfed6bd61c242a0"},
+    {file = "querystring_parser-1.2.4.tar.gz", hash = "sha256:644fce1cffe0530453b43a83a38094dbe422ccba8c9b2f2a1c00280e14ca8a62"},
+]
+
+[package.dependencies]
+six = "*"
+
+[[package]]
 name = "regex"
 version = "2022.10.31"
 description = "Alternative regular expression module, to replace re."
@@ -4600,6 +4865,18 @@ mlflow = ["mlflow"]
 mlflow-tests = ["boto3", "botocore", "mlflow", "moto"]
 
 [[package]]
+name = "smmap"
+version = "5.0.0"
+description = "A pure Python implementation of a sliding window memory map manager"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "smmap-5.0.0-py3-none-any.whl", hash = "sha256:2aba19d6a040e78d8b09de5c57e96207b09ed71d8e55ce0959eeee6c8e190d94"},
+    {file = "smmap-5.0.0.tar.gz", hash = "sha256:c840e62059cd3be204b0c9c9f74be2c09d5648eddd4580d9314c3ecde0b30936"},
+]
+
+[[package]]
 name = "sniffio"
 version = "1.3.0"
 description = "Sniff out which async library your code is running under"
@@ -4697,6 +4974,18 @@ postgresql-psycopg2binary = ["psycopg2-binary"]
 postgresql-psycopg2cffi = ["psycopg2cffi"]
 pymysql = ["pymysql", "pymysql (<1)"]
 sqlcipher = ["sqlcipher3-binary"]
+
+[[package]]
+name = "sqlparse"
+version = "0.4.3"
+description = "A non-validating SQL parser."
+category = "main"
+optional = false
+python-versions = ">=3.5"
+files = [
+    {file = "sqlparse-0.4.3-py3-none-any.whl", hash = "sha256:0323c0ec29cd52bceabc1b4d9d579e311f3e4961b98d174201d5622a23b85e34"},
+    {file = "sqlparse-0.4.3.tar.gz", hash = "sha256:69ca804846bb114d2ec380e4360a8a340db83f0ccf3afceeb1404df028f57268"},
+]
 
 [[package]]
 name = "stack-data"
@@ -5106,6 +5395,22 @@ docs = ["furo (>=2022.12.7)", "proselint (>=0.13)", "sphinx (>=6.1.3)", "sphinx-
 test = ["covdefaults (>=2.2.2)", "coverage (>=7.1)", "coverage-enable-subprocess (>=1)", "flaky (>=3.7)", "packaging (>=23)", "pytest (>=7.2.1)", "pytest-env (>=0.8.1)", "pytest-freezegun (>=0.4.2)", "pytest-mock (>=3.10)", "pytest-randomly (>=3.12)", "pytest-timeout (>=2.1)"]
 
 [[package]]
+name = "waitress"
+version = "2.1.2"
+description = "Waitress WSGI server"
+category = "main"
+optional = false
+python-versions = ">=3.7.0"
+files = [
+    {file = "waitress-2.1.2-py3-none-any.whl", hash = "sha256:7500c9625927c8ec60f54377d590f67b30c8e70ef4b8894214ac6e4cad233d2a"},
+    {file = "waitress-2.1.2.tar.gz", hash = "sha256:780a4082c5fbc0fde6a2fcfe5e26e6efc1e8f425730863c04085769781f51eba"},
+]
+
+[package.extras]
+docs = ["Sphinx (>=1.8.1)", "docutils", "pylons-sphinx-themes (>=1.0.9)"]
+testing = ["coverage (>=5.0)", "pytest", "pytest-cover"]
+
+[[package]]
 name = "watchdog"
 version = "2.3.1"
 description = "Filesystem events monitoring"
@@ -5217,7 +5522,7 @@ files = [
 name = "websocket-client"
 version = "1.5.1"
 description = "WebSocket client for Python with low level API options"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -5308,6 +5613,24 @@ files = [
     {file = "websockets-10.4-pp39-pypy39_pp73-win_amd64.whl", hash = "sha256:05a7233089f8bd355e8cbe127c2e8ca0b4ea55467861906b80d2ebc7db4d6b72"},
     {file = "websockets-10.4.tar.gz", hash = "sha256:eef610b23933c54d5d921c92578ae5f89813438fded840c2e9809d378dc765d3"},
 ]
+
+[[package]]
+name = "werkzeug"
+version = "2.2.3"
+description = "The comprehensive WSGI web application library."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "Werkzeug-2.2.3-py3-none-any.whl", hash = "sha256:56433961bc1f12533306c624f3be5e744389ac61d722175d543e1751285da612"},
+    {file = "Werkzeug-2.2.3.tar.gz", hash = "sha256:2e1ccc9417d4da358b9de6f174e3ac094391ea1d4fbef2d667865d819dfd0afe"},
+]
+
+[package.dependencies]
+MarkupSafe = ">=2.1.1"
+
+[package.extras]
+watchdog = ["watchdog"]
 
 [[package]]
 name = "wheel"
@@ -5528,4 +5851,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<3.11"
-content-hash = "3f282fc499d79d642e1fdfe80f58809930d4db98c44ca6fff6e6d833cbed8fd3"
+content-hash = "7680bdfdb69260ae511742bff497cc37334c5644029823842faab22f4206e6e2"
