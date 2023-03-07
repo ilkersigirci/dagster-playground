@@ -1,7 +1,7 @@
 from .branching import branching
 from .fixed_fan_in import fan_in
 from .job_configuration import config_mapping_job, hardcoded_config_job
-from .mlflow import mlflow_job
+from .mlflow_related import mlflow_job
 from .multiple_inputs import inputs_and_outputs, two_plus_two_from_constructor
 
 branching_job = branching.to_job()

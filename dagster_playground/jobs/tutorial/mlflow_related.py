@@ -1,7 +1,7 @@
 from dagster import OpExecutionContext, job, op
 from dagster_mlflow import end_mlflow_on_run_finished
 
-from dagster_playground.resources.mlflow import mlflow_resource
+from dagster_playground.resources.mlflow_related import mlflow_resource
 
 
 @op(required_resource_keys={"mlflow"})
