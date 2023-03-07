@@ -1,0 +1,37 @@
+local_artifact_storage:
+  module: dagster._core.storage.root
+  class: LocalArtifactStorage
+  config:
+    base_dir:
+      env: DAGSTER_LOCAL_ARTIFACT_STORAGE_DIR
+
+run_storage: SqliteRunStorage
+
+event_log_storage: SqliteEventLogStorage
+
+compute_logs:
+  module: dagster._core.storage.local_compute_log_manager
+  class: LocalComputeLogManager
+  config:
+    base_dir:
+      env: LOCAL_COMPUTE_LOG_MANAGER_DIRECTORY
+
+schedule_storage: SqliteScheduleStorage
+
+scheduler:
+  module: dagster._core.scheduler
+  class: DagsterDaemonScheduler
+  config: {}
+
+run_coordinator:
+  module: dagster._core.run_coordinator
+  class: DefaultRunCoordinator
+  config: {}
+
+run_launcher:
+  module: dagster
+  class: DefaultRunLauncher
+  config: {}
+
+telemetry:
+  enabled: false

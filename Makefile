@@ -197,15 +197,15 @@ pre-commit-clean: ## Clean pre-commit cache
 
 lint: ## Lint code with black, ruff
 	${PYTHON} -m black ${PACKAGE} --check --diff
-	${PYTHON} -m ruff ${PACKAGE}
+	${PYTHON} -m ruff check ${PACKAGE}
 
 lint-report: ## Lint report for gitlab
 	${PYTHON} -m black ${PACKAGE} --check --diff
-	${PYTHON} -m ruff ${PACKAGE} --format gitlab > gl-code-quality-report.json
+	${PYTHON} -m ruff check ${PACKAGE} --format gitlab > gl-code-quality-report.json
 
 format: ## Run black, ruff for all package files. CHANGES CODE
 	${PYTHON} -m black ${PACKAGE}
-	${PYTHON} -m ruff ${PACKAGE} --fix --show-fixes
+	${PYTHON} -m ruff check ${PACKAGE} --fix --show-fixes
 
 typecheck:  ## Checks code with mypy
 	${PYTHON} -m mypy --package ${PACKAGE}
