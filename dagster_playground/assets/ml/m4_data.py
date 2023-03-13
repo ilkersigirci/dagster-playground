@@ -1,26 +1,30 @@
 import numpy as np
 import pandas as pd
-from dagster import OpExecutionContext, asset, materialize
+from dagster import Config, OpExecutionContext, asset, materialize
 from sktime.forecasting.ets import AutoETS
 from tqdm import tqdm
 
 from dagster_playground.assets.ml.m4 import M4Info
 
 
-@asset(config_schema={"m4id": str})
-def original_m4_data(context: OpExecutionContext) -> pd.DataFrame:
+class M4Config(Config):
+    id: str = "Daily"
+
+
+@asset
+def original_m4_data(context: OpExecutionContext, config: M4Config) -> pd.DataFrame:
     """
     Downloads an M4 time series dataset given its ID.
     Returns a pandas DataFrame containing the dataset.
     """
-    m4id = context.op_config["m4id"]
-    uri = f"Train/{m4id}-train"
-    # url = f"Test/{m4id}-test.csv"
+    id = config.id
+    uri = f"Train/{id}-train"
+    # url = f"Test/{id}-test.csv"
 
     url = f"https://github.com/M4Competition/M4-methods/blob/master/Dataset/{uri}.csv?raw=true"
     # data = pd.read_csv(url, nrows=10)
 
-    total_rows = M4Info[m4id].n_ts
+    total_rows = M4Info[id].n_ts
     chunksize = 1000
     total = total_rows // chunksize + 1
 

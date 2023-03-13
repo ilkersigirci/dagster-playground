@@ -1,6 +1,10 @@
 """Dagster playground package."""
+import warnings
+
 import pkg_resources  # type: ignore
-from dagster import Definitions
+from dagster import Definitions, ExperimentalWarning
+
+warnings.filterwarnings("ignore", category=ExperimentalWarning)
 
 from .assets import ml_assets, temporary_assets, tutorial_assets
 from .jobs.bmi.config import bmi_local
