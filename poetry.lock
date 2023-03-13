@@ -891,20 +891,20 @@ files = [
 
 [[package]]
 name = "dagit"
-version = "1.1.21"
+version = "1.2.1"
 description = "Web UI for dagster."
 category = "dev"
 optional = false
 python-versions = "*"
 files = [
-    {file = "dagit-1.1.21-py3-none-any.whl", hash = "sha256:cf8d98ca478dbcfe2981058603baf9033188ee6469eedea4d962ba2f81b92a70"},
-    {file = "dagit-1.1.21.tar.gz", hash = "sha256:90b7315ab9001bfd04e085c3128302b64aa8b64e341e546def4948011b546395"},
+    {file = "dagit-1.2.1-py3-none-any.whl", hash = "sha256:d90b39da2ac6e27f19a0b7082daed6ea89667602a3918216e3fda6d14a4f9b72"},
+    {file = "dagit-1.2.1.tar.gz", hash = "sha256:f1cd23372a71468b7d2e62ac4b38b637b874254a0aad7caa4542f578e23ce561"},
 ]
 
 [package.dependencies]
 click = ">=7.0,<9.0"
-dagster = "1.1.21"
-dagster-graphql = "1.1.21"
+dagster = "1.2.1"
+dagster-graphql = "1.2.1"
 starlette = "*"
 uvicorn = {version = "*", extras = ["standard"]}
 
@@ -914,14 +914,14 @@ test = ["starlette[full]"]
 
 [[package]]
 name = "dagster"
-version = "1.1.21"
+version = "1.2.1"
 description = "The data orchestration platform built for productivity."
 category = "main"
 optional = false
 python-versions = "*"
 files = [
-    {file = "dagster-1.1.21-py3-none-any.whl", hash = "sha256:75249daa0076c4cc0000f6a5c9570469cce815f4c0b8c5e9c1e48e0cabd37bb4"},
-    {file = "dagster-1.1.21.tar.gz", hash = "sha256:49ba8e30d44e9dcc933158048f6f6f1d18fdf9262e2ee3397b724566006593c2"},
+    {file = "dagster-1.2.1-py3-none-any.whl", hash = "sha256:6c39c30b8f8a76b08ed0b8ac05ac24087b0d1feacfb3698fdf07b532e357ca86"},
+    {file = "dagster-1.2.1.tar.gz", hash = "sha256:7bf168be96778e3c91511f23c22205733f98b4802e4250a43503b457d716ea27"},
 ]
 
 [package.dependencies]
@@ -930,12 +930,12 @@ click = ">=5.0"
 coloredlogs = ">=6.1,<=14.0"
 croniter = ">=0.3.34"
 docstring-parser = "*"
-grpcio = ">=1.32.0,<1.48.1"
-grpcio-health-checking = ">=1.32.0,<1.44.0"
+grpcio = ">=1.44.0,<1.48.1"
+grpcio-health-checking = ">=1.44.0"
 Jinja2 = "*"
 packaging = ">=20.9"
 pendulum = "*"
-protobuf = ">=3.13.0,<4"
+protobuf = ">=3.20.0"
 psutil = {version = ">=1.0", markers = "platform_system == \"Windows\""}
 pydantic = "*"
 python-dateutil = "*"
@@ -960,22 +960,22 @@ docker = ["docker"]
 mypy = ["mypy (==0.991)"]
 pyright = ["pandas-stubs", "pyright (==1.1.293)", "types-PyYAML", "types-backports", "types-certifi", "types-chardet", "types-croniter", "types-cryptography", "types-mock", "types-paramiko", "types-pkg-resources", "types-pyOpenSSL", "types-python-dateutil", "types-pytz", "types-requests", "types-simplejson", "types-six", "types-sqlalchemy", "types-tabulate", "types-toml", "types-tzlocal"]
 ruff = ["ruff (==0.0.241)"]
-test = ["buildkite-test-collector", "docker", "grpcio-tools (>=1.32.0,<1.44.0)", "mock (==3.0.5)", "objgraph", "pytest (==7.0.1)", "pytest-cov (==2.10.1)", "pytest-dependency (==0.5.1)", "pytest-mock (==3.3.1)", "pytest-rerunfailures (==10.0)", "pytest-runner (==5.2)", "pytest-xdist (==2.1.0)", "responses", "snapshottest (==0.6.0)", "tox (==3.25.0)", "yamllint"]
+test = ["buildkite-test-collector", "docker", "grpcio-tools (>=1.44.0)", "mock (==3.0.5)", "objgraph", "pytest (==7.0.1)", "pytest-cov (==2.10.1)", "pytest-dependency (==0.5.1)", "pytest-mock (==3.3.1)", "pytest-rerunfailures (==10.0)", "pytest-runner (==5.2)", "pytest-xdist (==2.1.0)", "responses", "snapshottest (==0.6.0)", "tox (==3.25.0)", "yamllint"]
 
 [[package]]
 name = "dagster-graphql"
-version = "1.1.21"
+version = "1.2.1"
 description = "The GraphQL frontend to python dagster."
 category = "dev"
 optional = false
 python-versions = "*"
 files = [
-    {file = "dagster-graphql-1.1.21.tar.gz", hash = "sha256:d9204b565b26eedc1f4678614ea72712cf5465e094660b6d181e9cc7d705fc9d"},
-    {file = "dagster_graphql-1.1.21-py3-none-any.whl", hash = "sha256:84e47d31b7f8d054c46bf5bcc34a6fc8ee30f3da31e1ba74636fcb6ceca5101a"},
+    {file = "dagster-graphql-1.2.1.tar.gz", hash = "sha256:3cf71dfac1170d191565d738739c8f1021e7b089e16de09bac2a50e2905ba446"},
+    {file = "dagster_graphql-1.2.1-py3-none-any.whl", hash = "sha256:36e01b39ffdfc23d2243d4fc95a1da26543b86dc40b0171a1f406f148e08e456"},
 ]
 
 [package.dependencies]
-dagster = "1.1.21"
+dagster = "1.2.1"
 gql = {version = ">=3.0.0", extras = ["requests"]}
 graphene = ">=3"
 requests = "*"
@@ -1000,18 +1000,18 @@ pandas = "*"
 
 [[package]]
 name = "dagster-postgres"
-version = "0.17.21"
+version = "0.18.1"
 description = "A Dagster integration for postgres"
 category = "dev"
 optional = false
 python-versions = "*"
 files = [
-    {file = "dagster-postgres-0.17.21.tar.gz", hash = "sha256:95e152a05faf684d2bf3438f802a5da451d88c0f178309275b31a2385bb5d721"},
-    {file = "dagster_postgres-0.17.21-py3-none-any.whl", hash = "sha256:d95af322daa14860e31e59424aa25b9a42d599498b32274592210173fd2e400d"},
+    {file = "dagster-postgres-0.18.1.tar.gz", hash = "sha256:00f43215758ce25dbcefc97f793266b48f1bf778e32a75313dfd77b4da24b03b"},
+    {file = "dagster_postgres-0.18.1-py3-none-any.whl", hash = "sha256:ad4279f19d147de2a2ff8dd5b6e92d10b59f6156a0b8500d95ddd4396a7728bc"},
 ]
 
 [package.dependencies]
-dagster = "1.1.21"
+dagster = "1.2.1"
 psycopg2-binary = "*"
 
 [[package]]
@@ -1699,19 +1699,19 @@ protobuf = ["grpcio-tools (>=1.47.2)"]
 
 [[package]]
 name = "grpcio-health-checking"
-version = "1.43.0"
+version = "1.47.2"
 description = "Standard Health Checking Service for gRPC"
 category = "main"
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "grpcio-health-checking-1.43.0.tar.gz", hash = "sha256:23b3c6c3a6da85f7cd944cbebd965cdceb2a5e4e65f071a2b6cf1eb3510c993e"},
-    {file = "grpcio_health_checking-1.43.0-py3-none-any.whl", hash = "sha256:802195ec77dd609ed9721dcb4d5916b6018dc49351b904d152fb697595debd33"},
+    {file = "grpcio-health-checking-1.47.2.tar.gz", hash = "sha256:8f9411d68a6683064f742237df7b0dba8f3239ab42efb2dcaebc22d49241920c"},
+    {file = "grpcio_health_checking-1.47.2-py3-none-any.whl", hash = "sha256:026a743a7576ea61b9a9ac161827dffde3e928eef033b1844749cf5c7c5967eb"},
 ]
 
 [package.dependencies]
-grpcio = ">=1.43.0"
-protobuf = ">=3.6.0"
+grpcio = ">=1.47.2"
+protobuf = ">=3.12.0"
 
 [[package]]
 name = "gunicorn"
@@ -5851,4 +5851,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<3.11"
-content-hash = "7680bdfdb69260ae511742bff497cc37334c5644029823842faab22f4206e6e2"
+content-hash = "50388774ffe99d2aee41693ba55700a38f0a9c68bd9615e25ea8c80786aab346"
