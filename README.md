@@ -8,6 +8,10 @@ curl -sSL https://install.python-poetry.org | python3 -
 -   Default installation
 
 ```bash
+# Temp fix for keyring for poetry>1.2
+export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
+
+
 conda create -n dagster-playground python=3.8 -y
 conda activate dagster-playground
 make install
