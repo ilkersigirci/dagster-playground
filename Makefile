@@ -205,7 +205,11 @@ lint: ## Lint code with black, ruff
 	${PYTHON} -m black ${PACKAGE} --check --diff
 	${PYTHON} -m ruff check ${PACKAGE}
 
-lint-report: ## Lint report for gitlab
+lint-report: ## Lint report for github
+	${PYTHON} -m black ${PACKAGE} --check --diff
+	${PYTHON} -m ruff check ${PACKAGE} --format github > gl-code-quality-report.json
+
+lint-report-gitlab: ## Lint report for gitlab
 	${PYTHON} -m black ${PACKAGE} --check --diff
 	${PYTHON} -m ruff check ${PACKAGE} --format gitlab > gl-code-quality-report.json
 
