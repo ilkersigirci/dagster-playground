@@ -62,7 +62,7 @@ lightgbm = "^3.3.5"
 matplotlib = "^3.7.0"
 pyarrow = "^11.0.0"
 ### Dagster related ###
-dagster = "1.2.1"
+dagster = "1.2.3"
 dagster-mlflow = "*"
 # dbt-core = "*"
 # dbt-duckdb = "*"

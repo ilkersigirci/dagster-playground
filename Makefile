@@ -24,6 +24,12 @@ help:
 		 awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-15s\033[0m\
 		 %s\n", $$1, $$2}'
 
+# If .env file exists, include it and export its variables
+ifeq ($(shell test -f .env && echo 1),1)
+    include .env
+    export
+endif
+
 python-info: ## List information about the python environment
 	@which ${PYTHON}
 	@${PYTHON} --version
@@ -224,6 +230,9 @@ profile-gui: ## Profile the file with scalene and shows the report in the browse
 
 profile-builtin: ## Profile the file with cProfile and shows the report in the terminal
 	${PYTHON} -m cProfile -s tottime ${PROFILE_FILE_PATH}
+
+dagster-development:  ## Run dagster development env with environment variables
+	dagster dev
 
 docker: ## Build docker image
 	docker build --tag ${DOCKER_IMAGE} --file docker/Dockerfile --target ${DOCKER_TARGET} .
