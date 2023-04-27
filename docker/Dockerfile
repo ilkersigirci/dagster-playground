@@ -4,7 +4,7 @@
 ARG APP_NAME=dagster_playground
 ARG APP_PATH=/opt/$APP_NAME
 ARG PYTHON_VERSION=3.10-slim-bullseye
-ARG POETRY_VERSION=1.4.0
+ARG POETRY_VERSION=1.4.2
 
 #
 # Stage: staging

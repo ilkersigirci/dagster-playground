@@ -39,7 +39,7 @@ update-pip:
 
 install-poetry: ## Install poetry if it is not already installed (Installing poetry with official method is recommended)
 	$(MAKE) update-pip
-	! command -v poetry &> /dev/null && pip install poetry==1.4.0
+	! command -v poetry &> /dev/null && pip install poetry==1.4.2
 	# poetry config virtualenvs.create false
 	# poetry config virtualenvs.prefer-active-python true
 	# poetry config repositories.private-pypi <PRIVATE_PYPI_URL>
@@ -88,7 +88,7 @@ install-precommit: ## Install pre-commit hooks
 	pre-commit install
 
 install-lint:
-	pip install black[d]==23.1.0 ruff==0.0.253
+	pip install black[d]==23.1.0 ruff==0.0.262
 
 install-build:
 	############# PIP ############
