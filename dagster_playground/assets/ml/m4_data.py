@@ -1,3 +1,4 @@
+# ruff: noqa
 import numpy as np
 import pandas as pd
 from dagster import Config, OpExecutionContext, asset, materialize

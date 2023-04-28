@@ -33,16 +33,19 @@ def movielens_movies(movielens_zip):
 @asset
 def movie_to_users(movielens_ratings):
     # create a matrix: 1 row per movie, 1 column per user
-    df = (
+    movie_df = (
         movielens_ratings[["movieId", "userId"]]
         .groupby("movieId")
         .aggregate(set)
         .reset_index()
     )
-    movie_ids = list(df["movieId"])
+    movie_ids = list(movie_df["movieId"])
     fh = FeatureHasher()
     features = fh.fit_transform(
-        [Counter(str(user_id) for user_id in user_ids) for user_ids in df["userId"]]
+        [
+            Counter(str(user_id) for user_id in user_ids)
+            for user_ids in movie_df["userId"]
+        ]
     )
 
     return SimpleNamespace(movie_ids=movie_ids, features=features)

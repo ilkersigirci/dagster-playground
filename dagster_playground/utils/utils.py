@@ -2,6 +2,8 @@ import inspect
 from dataclasses import _MISSING_TYPE, fields
 from typing import Any, Callable, Dict, List, Tuple, Type, TypeVar
 
+from pydantic import BaseModel, Field
+
 T1 = TypeVar("T1")
 
 
@@ -110,10 +112,9 @@ def get_function_param_defaults(function: Callable) -> Dict:
     """
     params = _get_function_params(function)
 
-    default_dict = {
+    return {
         param.name: param.default for param in params if param.default != inspect._empty
     }
-    return default_dict
 
 
 def get_dataclass_asdict(
@@ -146,14 +147,37 @@ def get_dataclass_asdict(
             continue
 
         # check is field has default value
-        if isinstance(_field.default, _MISSING_TYPE):
-            # no default
-            default = ...
-        else:
-            default = _field.default
+        default = ... if isinstance(_field.default, _MISSING_TYPE) else _field.default
 
         result = (_field.type, default) if return_default else _field.type
 
         field_kwargs[field_name] = result
 
     return field_kwargs
+
+
+def create_pydantic_class(class_name, python_class):
+    """
+    Dynamically creates a Pydantic class with the given class_name and fields extracted from python_class.
+    Args:
+        class_name (str): Name of the Pydantic class.
+        python_class (type): Python class from which to extract fields.
+    Returns:
+        (type): Dynamically created Pydantic class.
+    """
+    # Get the constructor signature of the Python class
+    signature = inspect.signature(python_class.__init__)
+    # Extract the field names and types from the constructor signature
+    fields = {}
+    for param_name, param in signature.parameters.items():
+        # Skip 'self' parameter
+        if param_name == "self":
+            continue
+        field_type = param.annotation
+        # Use Field class from Pydantic for fields with default values
+        if param.default != inspect.Parameter.empty:
+            fields[param_name] = (field_type, Field(default=param.default))
+        else:
+            fields[param_name] = (field_type, ...)
+    # Create the Pydantic class using type function
+    return type(class_name, (BaseModel,), fields)

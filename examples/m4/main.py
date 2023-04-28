@@ -22,9 +22,9 @@ def evaluate_my_model(forecasts, dataset, root_dir, train_time=None):
         evaluate_M4(dataset=dataset, forecasts=forecasts, root_dir=root_dir)
 
     if "M5" in dataset:
-        output = evaluate_M5(forecasts=forecasts, root_dir=root_dir)
+        return evaluate_M5(forecasts=forecasts, root_dir=root_dir)
 
-        return output
+    return None
 
 
 class TSBenchmarks:
@@ -49,7 +49,7 @@ class TSBenchmarks:
 
     def _read_file(self) -> pd.DataFrame:
         logger.info("Reading file...")
-        df = pd.read_csv(f"/opt/ml/processing/input/{self.filename}")
+        input_df = pd.read_csv(f"/opt/ml/processing/input/{self.filename}")
         logger.info("File readed.")
         renamer = {
             self.unique_id_column: "unique_id",
@@ -57,9 +57,7 @@ class TSBenchmarks:
             self.y_column: "y",
         }
 
-        df.rename(columns=renamer, inplace=True)
-
-        return df
+        return input_df.rename(columns=renamer)
 
     def benchmark(self) -> None:
         """Compute metrics"""
