@@ -2,7 +2,9 @@
 import warnings
 
 import pkg_resources  # type: ignore
-from dagster import Definitions, ExperimentalWarning
+from dagster import Definitions, EnvVar, ExperimentalWarning
+
+from dagster_playground.resources.pythonic_resource import CredentialsResource
 
 warnings.filterwarnings("ignore", category=ExperimentalWarning)
 
@@ -48,4 +50,15 @@ ASSETS = ml_assets + temporary_assets + tutorial_assets
 # ASSETS = [*temporary_assets, *tutorial_assets]
 # ASSETS = None
 
-defs = Definitions(assets=ASSETS, jobs=JOBS, schedules=SCHEDULES, sensors=SENSORS)
+RESOURCES = {
+    "cred_store_local": CredentialsResource(username="Local username"),
+    "cred_store_env": CredentialsResource(username=EnvVar("DAGSTER_ENV_TEST")),
+}
+
+defs = Definitions(
+    assets=ASSETS,
+    jobs=JOBS,
+    schedules=SCHEDULES,
+    sensors=SENSORS,
+    resources=RESOURCES,
+)

@@ -26,5 +26,6 @@
   "autoDocstring.includeExtendedSummary": false,
   "python.testing.unittestEnabled": false,
   "python.testing.pytestEnabled": true,
+  "python.analysis.typeCheckingMode": "basic",
   // "python.testing.pytestArgs": [],
 }
