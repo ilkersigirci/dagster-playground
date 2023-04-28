@@ -140,9 +140,7 @@ def mase(  # noqa: PLR0913
     scale = np.abs(y_train[:-seasonality] - y_train[seasonality:])
     scale = np.average(scale, axis=axis)
 
-    mase = delta_y / scale
-
-    return mase
+    return delta_y / scale
 
 
 # Cell
@@ -173,7 +171,7 @@ def download_file(directory: str, source_url: str, decompress: bool = False) -> 
     block_size = 1024  # 1 Kibibyte
 
     t = tqdm(total=total_size, unit="iB", unit_scale=True)
-    with open(filepath, "wb") as f:
+    with Path.open(Path(filepath), "wb") as f:
         for data in r.iter_content(block_size):
             t.update(len(data))
             f.write(data)

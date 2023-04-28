@@ -1,6 +1,10 @@
 """Dagster playground package."""
+import warnings
+
 import pkg_resources  # type: ignore
-from dagster import Definitions
+from dagster import Definitions, ExperimentalWarning
+
+warnings.filterwarnings("ignore", category=ExperimentalWarning)
 
 from .assets import ml_assets, temporary_assets, tutorial_assets
 from .jobs.bmi.config import bmi_local
@@ -13,6 +17,7 @@ from .jobs.tutorial import (
     fan_in_job,
     hardcoded_config_job,
     inputs_and_outputs_job,
+    mlflow_job,
     two_plus_two_from_constructor_job,
 )
 
@@ -29,6 +34,7 @@ JOBS = [
     fan_in_job,
     inputs_and_outputs_job,
     two_plus_two_from_constructor_job,
+    mlflow_job,
 ]
 # JOBS = None
 

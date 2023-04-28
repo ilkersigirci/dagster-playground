@@ -1,6 +1,7 @@
 import csv
 import urllib.request
 import zipfile
+from pathlib import Path
 
 import requests
 from dagster import asset
@@ -59,7 +60,7 @@ def cereal_ratings_csv() -> None:
 
 @asset(non_argument_deps={"cereal_ratings_csv"})
 def nabisco_cereal_ratings(nabisco_cereals):
-    with open("cereal-ratings.csv", "r") as f:
+    with Path.open(Path("cereal-ratings.csv"), "r") as f:
         cereal_ratings = {
             row["name"]: row["rating"] for row in csv.DictReader(f.readlines())
         }

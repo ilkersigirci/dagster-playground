@@ -24,13 +24,24 @@ help:
 		 awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-15s\033[0m\
 		 %s\n", $$1, $$2}'
 
+# If .env file exists, include it and export its variables
+ifeq ($(shell test -f .env && echo 1),1)
+    include .env
+    export
+endif
+
+python-info: ## List information about the python environment
+	@which ${PYTHON}
+	@${PYTHON} --version
+
 update-pip:
 	${PYTHON} -m pip install -U pip
 
 install-poetry: ## Install poetry if it is not already installed (Installing poetry with official method is recommended)
 	$(MAKE) update-pip
-	! command -v poetry &> /dev/null && pip install poetry==1.4.0
+	! command -v poetry &> /dev/null && pip install poetry==1.4.2
 	# poetry config virtualenvs.create false
+	# poetry config virtualenvs.prefer-active-python true
 	# poetry config repositories.private-pypi <PRIVATE_PYPI_URL>
 	# poetry config http-basic.private-pypi ${PYPI_USERNAME} ${PYPI_PASSWORD}
 
@@ -77,7 +88,7 @@ install-precommit: ## Install pre-commit hooks
 	pre-commit install
 
 install-lint:
-	pip install black[d]==23.1.0 ruff==0.0.253
+	pip install black[d]==23.1.0 ruff==0.0.262
 
 install-build:
 	############# PIP ############
@@ -192,15 +203,19 @@ pre-commit-clean: ## Clean pre-commit cache
 
 lint: ## Lint code with black, ruff
 	${PYTHON} -m black ${PACKAGE} --check --diff
-	${PYTHON} -m ruff ${PACKAGE}
+	${PYTHON} -m ruff check ${PACKAGE}
 
-lint-report: ## Lint report for gitlab
+lint-report: ## Lint report for github
 	${PYTHON} -m black ${PACKAGE} --check --diff
-	${PYTHON} -m ruff ${PACKAGE} --format gitlab > gl-code-quality-report.json
+	${PYTHON} -m ruff check ${PACKAGE} --format github > gl-code-quality-report.json
+
+lint-report-gitlab: ## Lint report for gitlab
+	${PYTHON} -m black ${PACKAGE} --check --diff
+	${PYTHON} -m ruff check ${PACKAGE} --format gitlab > gl-code-quality-report.json
 
 format: ## Run black, ruff for all package files. CHANGES CODE
 	${PYTHON} -m black ${PACKAGE}
-	${PYTHON} -m ruff ${PACKAGE} --fix --show-fixes
+	${PYTHON} -m ruff check ${PACKAGE} --fix --show-fixes
 
 typecheck:  ## Checks code with mypy
 	${PYTHON} -m mypy --package ${PACKAGE}
@@ -219,6 +234,9 @@ profile-gui: ## Profile the file with scalene and shows the report in the browse
 
 profile-builtin: ## Profile the file with cProfile and shows the report in the terminal
 	${PYTHON} -m cProfile -s tottime ${PROFILE_FILE_PATH}
+
+dagster-development:  ## Run dagster development env with environment variables
+	dagster dev
 
 docker: ## Build docker image
 	docker build --tag ${DOCKER_IMAGE} --file docker/Dockerfile --target ${DOCKER_TARGET} .

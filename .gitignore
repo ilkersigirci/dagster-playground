@@ -267,6 +267,7 @@ cython_debug/
 
 /.ruff_cache/
 public
+mlruns
 
 # Dagster related
 tmp*/

@@ -1,5 +1,8 @@
 from dagster import materialize
 
+# NOTE: Can also be used
+# from dagster import materialize_to_memory
+
 from dagster_playground.assets.tutorial.cereal import (
     cereal_protein_fractions,
     cereals,

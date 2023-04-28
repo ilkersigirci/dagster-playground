@@ -1,3 +1,4 @@
+# ruff: noqa
 """Copied from https://github.com/Nixtla/nixtla/tree/main/tsbenchmarks/benchmarks
 
 python m5.py \
