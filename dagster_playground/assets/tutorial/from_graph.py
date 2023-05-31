@@ -96,7 +96,7 @@ def subset_graph():
 
 ########################  Defining explicit dependencies ###############################
 
-# NOTE: In 1.1.20 onwards, this usage doesn't show up in the docs, but it's still supported.
+# NOTE: In 1.3.6 onwards, this usage doesn't show up in the docs, but it's still supported.
 
 
 @graph(out={"one": GraphOut(), "two": GraphOut()})
