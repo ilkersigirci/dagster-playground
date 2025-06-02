@@ -138,7 +138,9 @@ class M4:
     source_url: str = (
         "https://raw.githubusercontent.com/Mcompetitions/M4-methods/master/Dataset/"
     )
-    naive2_forecast_url: str = "https://github.com/Nixtla/m4-forecasts/raw/master/forecasts/submission-Naive2.zip"
+    naive2_forecast_url: str = (
+        "https://github.com/Nixtla/m4-forecasts/raw/master/forecasts/submission-Naive2.zip"
+    )
 
     @staticmethod
     def load(
